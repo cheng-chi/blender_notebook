@@ -55,7 +55,6 @@ def install(blender_exec, kernel_dir, kernel_name):
         raise RuntimeError("Invalid blender executable path!")
 
     kernel_path = get_kernel_path(kernel_dir)
-    print(kernel_path)
 
     kernel_install_path = kernel_path.joinpath(kernel_name)
     if kernel_install_path.exists():

@@ -1,9 +1,14 @@
 from setuptools import setup
+import pathlib
+with pathlib.Path(__file__).parent.joinpath('README.md').open('r', encoding='utf-8') as f:
+    long_description = f.read()
 
 setup(
     name = "blender_notebook",
     version = "0.0.1",
-    description = "Script to wrap blender as a jupyter kernel",
+    description = "A simple command line tool to wrap blender 2.8+ as a jupyter kernel",
+    long_description = long_description,
+    long_description_content_type = 'text/markdown',
     author = "Cheng Chi",
     author_email = "cheng-chi@outlook.com",
     license = "MIT",
