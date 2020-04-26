@@ -30,6 +30,14 @@ Then, run the blender_notebook CLI:
 $ blender_notebook install --blender-exec /snap/bin/blender
 Saving files to ~/.local/share/jupyter/kernels/blender
 ```
+If you launch jupyter notebook as usual, a new kernel named `blender` should be available.
+```
+$ jupyter kernelspec list
+Available kernels:
+blender              ~/.local/share/jupyter/kernels/blender
+
+$ jupyter notebook
+```
 
 You can also delete the kernel:
 ```
