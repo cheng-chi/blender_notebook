@@ -5,6 +5,8 @@ import subprocess
 import os
 import site
 import json
+import sys
+import textwrap
 
 def get_kernel_path(kernel_dir):
     kernel_path = None
@@ -14,7 +16,8 @@ def get_kernel_path(kernel_dir):
         result = subprocess.run(["jupyter", "--data-dir"], capture_output=True)
         data_dir = result.stdout.decode('utf8').strip()
         kernel_path = pathlib.Path(data_dir).joinpath('kernels')
-    assert(kernel_path.exists())
+    if not kernel_path.exists():
+        raise RuntimeError("Kernel path {} does not exist!".format(kernel_path))
     return kernel_path
 
 
@@ -26,9 +29,23 @@ def cli():
 @click.option('--blender-exec', required=True, type=str)
 @click.option('--kernel-dir', default=None, type=str)
 def install(blender_exec, kernel_dir):
+    # check version
+    supported_py_version = (3, 7)
+    current_py_version = (sys.version_info.major, sys.version_info.minor)
+    if current_py_version != supported_py_version:
+        message = """
+        Current python interpreter version is not {}.{}!
+        blender_notebook will link pip packages installed in this interpreter to the 
+        blender embedded python interpreter. Mismatch in python version might cause
+        problem launching the jupyter kernel. Are you sure to continue?
+        """.format(*supported_py_version)
+        if not click.confirm(textwrap.dedent(message)):
+            return
+
     # check input
     blender_path = pathlib.Path(blender_exec)
-    assert(blender_path.exists())
+    if not blender_path.exists():
+        raise RuntimeError("Invalid blender executable path!")
 
     kernel_path = get_kernel_path(kernel_dir)
     print(kernel_path)

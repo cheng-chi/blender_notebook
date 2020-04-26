@@ -1,3 +1,7 @@
+"""
+Inspired by https://github.com/cameronfr/BlenderKernel
+"""
+
 import pathlib
 import json
 
