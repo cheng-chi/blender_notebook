@@ -26,7 +26,6 @@ def cli():
 @click.option('--blender-exec', required=True, type=str)
 @click.option('--kernel-dir', default=None, type=str)
 def install(blender_exec, kernel_dir):
-    click.echo("hello! {}".format(blender_exec))
     # check input
     blender_path = pathlib.Path(blender_exec)
     assert(blender_path.exists())
@@ -94,5 +93,8 @@ def remove(kernel_dir):
     shutil.rmtree(kernel_install_path)
     click.echo("blender jupyter kernel is removed!")
 
-if __name__ == '__main__':
+def main():
     cli()
+
+if __name__ == '__main__':
+    main()
