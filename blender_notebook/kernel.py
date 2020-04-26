@@ -21,7 +21,7 @@ print(RUNTIME_CONFIG)
 import asyncio
 import sys
 # Must append system python path with ipykernel etc.
-sys.path.extend(RUNTIME_CONFIG['site_packages'])
+sys.path.extend(RUNTIME_CONFIG['python_path'])
 import bpy
 from ipykernel.kernelapp import IPKernelApp
 from bpy.app.handlers import persistent

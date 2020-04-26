@@ -8,7 +8,7 @@ import json
 
 def get_kernel_path(kernel_dir):
     kernel_path = None
-    if not kernel_dir:
+    if kernel_dir:
         kernel_path = pathlib.Path(kernel_dir)
     else:
         result = subprocess.run(["jupyter", "--data-dir"], capture_output=True)
@@ -24,7 +24,7 @@ def cli():
 
 @cli.command()
 @click.option('--blender-exec', required=True, type=str)
-@click.option('--kernel-dir', default="", type=str)
+@click.option('--kernel-dir', default=None, type=str)
 @click.option('--debug', default=False, type=bool)
 def install(blender_exec, kernel_dir, debug):
     click.echo("hello! {}".format(blender_exec))
@@ -33,6 +33,7 @@ def install(blender_exec, kernel_dir, debug):
     assert(blender_path.exists())
 
     kernel_path = get_kernel_path(kernel_dir)
+    print(kernel_path)
 
     kernel_name = "blender"
     kernel_install_path = kernel_path.joinpath(kernel_name)
@@ -77,13 +78,13 @@ def install(blender_exec, kernel_dir, debug):
     blender_config_json_dst = kernel_install_path.joinpath('blender_config.json')
 
     with kernel_json_dst.open('w') as f:
-        json.dump(kernel_dict, f)
+        json.dump(kernel_dict, f, indent=2)
     with blender_config_json_dst.open('w') as f:
-        json.dump(blender_config_dict, f)
+        json.dump(blender_config_dict, f, indent=2)
 
 
 @cli.command()
-@click.option('--kernel-dir', default="", type=str)
+@click.option('--kernel-dir', default=None, type=str)
 def remove(kernel_dir):
     kernel_name = "blender"
     kernel_path = get_kernel_path(kernel_dir)
