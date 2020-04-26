@@ -25,8 +25,7 @@ def cli():
 @cli.command()
 @click.option('--blender-exec', required=True, type=str)
 @click.option('--kernel-dir', default=None, type=str)
-@click.option('--debug', default=False, type=bool)
-def install(blender_exec, kernel_dir, debug):
+def install(blender_exec, kernel_dir):
     click.echo("hello! {}".format(blender_exec))
     # check input
     blender_path = pathlib.Path(blender_exec)
@@ -56,14 +55,11 @@ def install(blender_exec, kernel_dir, debug):
     # copy python files
     kernel_py_dst = kernel_install_path.joinpath(kernel_py_path.name)
     kernel_launcher_py_dst = kernel_install_path.joinpath(kernel_launcher_py_path.name)
-    if not debug:
-        shutil.copyfile(kernel_py_path, kernel_py_dst)
-        shutil.copyfile(kernel_launcher_py_path, kernel_launcher_py_dst)
-        kernel_launcher_py_dst.chmod(0o755)
-    else:
-        kernel_py_dst.symlink_to(kernel_py_path)
-        kernel_launcher_py_dst.symlink_to(kernel_launcher_py_path)
-    
+
+    shutil.copyfile(kernel_py_path, kernel_py_dst)
+    shutil.copyfile(kernel_launcher_py_path, kernel_launcher_py_dst)
+    kernel_launcher_py_dst.chmod(0o755)
+
     # dump jsons
     kernel_dict = {
         "argv": [str(kernel_launcher_py_dst), "-f", r"{connection_file}"],
