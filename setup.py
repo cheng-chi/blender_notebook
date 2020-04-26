@@ -17,9 +17,10 @@ setup(
     zip_safe = True,
     install_requires = [
         'click',
-        'ipykernel'
+        'ipykernel',
+        'notebook'
     ],
-    python_requires = '>=3.6',
+    python_requires = '>=3.7',
     entry_points = {
         'console_scripts': [
             'blender_notebook = blender_notebook.installer:main',
