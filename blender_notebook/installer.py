@@ -17,7 +17,11 @@ def get_kernel_path(kernel_dir):
         data_dir = result.stdout.decode('utf8').strip()
         kernel_path = pathlib.Path(data_dir).joinpath('kernels')
     if not kernel_path.exists():
-        raise RuntimeError("Kernel path {} does not exist!".format(kernel_path))
+        click.echo("Kernel path {} does not exist!".format(kernel_path))
+        if click.confirm("Are you sure to create?"):
+            kernel_path.mkdir(parents=True, exist_ok=True)
+        else:
+            raise RuntimeError("Abort!")
     return kernel_path
 
 
@@ -27,6 +31,7 @@ def cli():
     Command line tool to wrap blender 2.8+ as a jupyter kernel
     """
     pass
+
 
 @cli.command()
 @click.option('--blender-exec', required=True, type=str, help="Path the blender executable")
