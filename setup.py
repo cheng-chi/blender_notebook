@@ -29,6 +29,7 @@ setup(
     entry_points = {
         'console_scripts': [
             'blender_notebook = blender_notebook.installer:main',
+            'blender-notebook = blender_notebook.installer:main'
         ]
     }
 )
