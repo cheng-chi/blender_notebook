@@ -25,9 +25,19 @@ $ which blender
 ```
 In my case, blender is installed from snap.
 
-Then, run the blender_notebook CLI:
+On MacOS, the blender executable path is usually:
 ```
-$ blender_notebook install --blender-exec /snap/bin/blender
+/Applications/Blender.app/Contents/MacOS/Blender
+```
+
+On Windows, the blender executable path is usually:
+```
+C:\Program Files\Blender Foundation\Blender 2.82\blender.exe
+```
+
+Then, run the blender_notebook CLI (replace `"snap/bin/blender"` with your blender executable path):
+```
+$ blender_notebook install --blender-exec="/snap/bin/blender"
 Saving files to ~/.local/share/jupyter/kernels/blender
 ```
 If you launch jupyter notebook as usual, a new kernel named `blender` should be available.
