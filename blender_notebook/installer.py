@@ -86,15 +86,25 @@ def install(blender_exec, kernel_dir, kernel_name):
     shutil.copyfile(kernel_launcher_py_path, kernel_launcher_py_dst)
     kernel_launcher_py_dst.chmod(0o755)
 
+    # find python path
+    python_path = list()
+    for path in sys.path:
+        if pathlib.Path(path).is_dir():
+            python_path.append(str(path))
+
     # dump jsons
     kernel_dict = {
-        "argv": [str(kernel_launcher_py_dst), "-f", r"{connection_file}"],
+        "argv": [
+            sys.executable,
+            str(kernel_launcher_py_dst), 
+            "-f", 
+            r"{connection_file}"],
         "display_name": kernel_name,
         "language": "python"
     }
     blender_config_dict = {
         "blender_executable": str(blender_exec),
-        "python_path": [str(x) for x in site.getsitepackages()],
+        "python_path": python_path,
     }
     kernel_json_dst = kernel_install_path.joinpath('kernel.json')
     blender_config_json_dst = kernel_install_path.joinpath('blender_config.json')
