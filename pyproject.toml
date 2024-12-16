@@ -1,7 +1,6 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
-
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "blender_notebook"
@@ -23,7 +22,6 @@ classifiers = [
 requires-python = ">=3.10"
 
 dependencies = ["click", "ipykernel", "notebook"]
-
 
 [project.scripts]
 blender_notebook = "blender_notebook.installer:main"
