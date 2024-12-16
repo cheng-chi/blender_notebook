@@ -2,7 +2,7 @@
 
 A simple command line tool to wrap blender 2.8+ as a jupyter kernel.
 
-Blender's python API requires its embedded python interpreter. As of Blender 2.82, python 3.7 is packaged. In order to make ipykernel and other pip packages accessible to Blender, the `site-packages` directory of the python interpreter executing blender_notebook will be added to Blender's python path. Therefore, it's highly recommended to use exactly the same python version as your blender.
+Blender's python API requires its embedded python interpreter. As of Blender 4.3, python 3.11 is packaged. In order to make ipykernel and other pip packages accessible to Blender, the `site-packages` directory of the python interpreter executing blender_notebook will be added to Blender's python path. Therefore, it's highly recommended to use exactly the same python version as your blender.
 
 ## Installation
 
@@ -32,7 +32,7 @@ On MacOS, the blender executable path is usually:
 
 On Windows, the blender executable path is usually:
 ```
-C:\Program Files\Blender Foundation\Blender 2.82\blender.exe
+C:\Program Files\Blender Foundation\Blender 4.3\blender.exe
 ```
 
 Then, run the blender_notebook CLI (replace `"snap/bin/blender"` with your blender executable path):
