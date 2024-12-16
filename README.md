@@ -55,3 +55,18 @@ $ blender_notebook remove
 Are you sure to delete ~/.local/share/jupyter/kernels/blender ? [y/N]: y
 blender jupyter kernel is removed!
 ```
+
+
+# Development:
+
+1. uv sync
+2. uv build
+3. uv publish
+
+
+# Changelog 
+
+## 0.0.4
+
+* ajust README to Blender 4.3
+* Change build system from setup.py to pyproject.toml

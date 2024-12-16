@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "blender_notebook"
+version = "0.0.4"
+description = "A simple command line tool to wrap blender 2.8+ as a jupyter kernel"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    {name = "Cheng Chi", email = "cheng-chi@outlook.com"},
+    {name = "Jan-Hendrik Müller" , email = "jan-hendrik.mueller@gmx.net"}
+]
+#https://www.linkedin.com/in/jan-hendrik3
+classifiers = [
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+]
+requires-python = ">=3.10"
+
+dependencies = ["click", "ipykernel", "notebook"]
+
+[project.scripts]
+blender_notebook = "blender_notebook.installer:main"
+blender-notebook = "blender_notebook.installer:main"
