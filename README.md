@@ -1,5 +1,6 @@
 # Blender Notebook
 
+[![PyPI version](https://badge.fury.io/py/blender_notebook.svg)](https://pypi.org/project/blender_notebook/)  
 A simple command line tool to wrap blender 2.8+ as a jupyter kernel.
 
 Blender's python API requires its embedded python interpreter. As of Blender 4.3, python 3.11 is packaged. In order to make ipykernel and other pip packages accessible to Blender, the `site-packages` directory of the python interpreter executing blender_notebook will be added to Blender's python path. Therefore, it's highly recommended to use exactly the same python version as your blender.
